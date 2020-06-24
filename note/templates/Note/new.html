@@ -1,0 +1,29 @@
+{% extends "Note/base.html" %}
+
+{% block title %}New topic{% endblock %}
+
+{% block content %}
+
+<style>
+    .but {
+        margin-left: 50px;
+        background-color: rgb(4, 97, 114);
+        border-radius: 10px;
+        border: 1px;
+        color: white;
+    }
+    .btn {
+        margin-left: 45px;
+    }
+</style>
+
+<h2>Add a new topic</h2>
+<br>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }} 
+    <button type="submit" class="btn btn-primary">Add topic</button>
+</form>
+
+{% endblock %}
+
