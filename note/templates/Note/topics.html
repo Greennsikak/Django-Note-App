@@ -10,11 +10,8 @@
 
 <ul>
     {% for entry in entries %}
-    <li>
-        <p>{{ entry.text | linebreaks }}</p>
-        <p>
-            <a href="{% url 'Note:edit_entry' entry.id %}">Edit entry</a>
-        </p>
+        <li><p><a href="{% url 'Note:edit_entry' entry.id %}">{{ entry.text | linebreaks }}</a></p></li>
+            
     {% empty %}
         <li>There are no entries for this topic yet.</li>
     {% endfor %}
