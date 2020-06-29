@@ -16,9 +16,16 @@
 </head>
 <body>
     <p>
-        
         <a href="{% url 'Note:topic' %}">Note</a>
+        {% if user.is_authenticated %}
+            Hello, {{ user.username }}
+            <a href="{% url 'users:logout' %}">Log out</a>
+        {% else %}
+            <a href="{% url 'users:login' %}">Log in</a>
+        {% endif %}
     </p>
+
+
     {% block content %}{% endblock %}
     {% block topics %}{% endblock %}
     {% block topic %}{% endblock %}
