@@ -12,19 +12,25 @@
             background-color: rgb(194, 220, 245);
             margin: 20px;
         }
+        .welcomeMessage {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <p>
         <a href="{% url 'Note:topic' %}">Note</a>
-        {% if user.is_authenticated %}
-            Hello, {{ user.username }}
-            <a href="{% url 'users:logout' %}">Log out</a>
-        {% else %}
-            <a href="{% url 'users:login' %}">Log in</a>
-        {% endif %}
     </p>
 
+    <div class="welcomeMessage">
+        {% if user.is_authenticated %}
+        <h4>Hello {{ user.username }}</h4>
+            <a onclick="return confirm('Are you sure you want to log out?')" href="{% url 'users:logout' %}">Log out</a>
+    {% else %}
+        <a href="{% url 'users:register' %}">Register</a>
+        <a href="{% url 'users:login' %}">Log in</a>
+    {% endif %}
+    </div>
 
     {% block content %}{% endblock %}
     {% block topics %}{% endblock %}
