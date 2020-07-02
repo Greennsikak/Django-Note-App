@@ -23,7 +23,9 @@ def new_topic(request):
     if request.method == "POST":
         form = TopicForm(data=request.POST)
         if form.is_valid():
-            form.save()
+            new_topic = form.save(commit=False)
+            new_topic.owner = request.user
+            new_topic.save()
             return redirect('Note:topic')
     else:
         form = TopicForm()
